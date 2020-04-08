@@ -1,7 +1,7 @@
 <template>
   <div class="demo">
     <h3>Demo</h3>
-    <button @click="loginIn">网络请求</button>
+    <el-button type="primary" @click="loginIn">网络请求</el-button>
   </div>
 </template>
 
@@ -32,6 +32,7 @@
                 }).then(res => {
                     console.log(res);
                     if (res.data) {
+                        this.$message.success('登录成功');
                         this.$store.commit({
                             type: loginIn,
                             accessToken: res.data.access_token,
