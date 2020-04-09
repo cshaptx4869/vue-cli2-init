@@ -1,11 +1,15 @@
 import Axios from 'axios'
 import Qs from 'qs'
 import SysConfig from '../config'
+import Common from '../assets/js/common'
 
 export function request(config) {
   const instance = new Axios.create({
     baseURL: SysConfig.serverUrl,
-    timeout: 5000
+    timeout: 5000,
+    headers: {
+      Authorization: Common.getToken()
+    }
   });
 
   instance.interceptors.request.use(config => {
