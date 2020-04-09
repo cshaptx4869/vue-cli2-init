@@ -22,7 +22,7 @@ function getToken(key = 'accessToken') {
  * 2、accessToken 是否有效。无效,带上 refresh_token 重新获取 access_token; 有效,不作处理
  * 3、refreshToken 是否有效。无效,跳转登录; 有效,返回新的 accessToken
  */
-async function checkToken2() {
+async function checkToken() {
   let bool = false;
   if (getToken('accessToken')) {
     await request({
