@@ -4,8 +4,9 @@ import CommonMethod from '../assets/js/common'
 
 Vue.use(VueRouter);
 
-const Home = () => import('../components/Home');
 const Login = () => import('../components/Login');
+const Home = () => import('../components/Home');
+const Welcome = () => import('../components/Welcome');
 
 const routes = [
   {
@@ -17,7 +18,20 @@ const routes = [
     component: Home,
     meta: {
       title: '首页'
-    }
+    },
+    children: [
+      {
+        path: '',
+        redirect: '/welcome'
+      },
+      {
+        path: '/welcome',
+        component: Welcome,
+        meta: {
+          title: '欢迎'
+        }
+      }
+    ]
   },
   {
     path: '/login',
@@ -42,7 +56,8 @@ router.beforeEach(async (to, from, next) => {
   } else if (to.path === '/login' && isLogin) {
     return next('/home');
   }
-  document.title = to.matched[0].meta.title;
+  // document.title = to.matched[0].meta.title;
+  document.title = to.meta.title;
   next();
 });
 
