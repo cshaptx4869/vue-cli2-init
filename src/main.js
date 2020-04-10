@@ -3,12 +3,14 @@
 import Vue from 'vue'
 import router from './router';
 import store from './store'
+import Fragment from 'vue-fragment'
 import './plugins/element'
 import './assets/css/global.css'
 import Common from './assets/js/common'
 import App from './App'
 
 Vue.config.productionTip = false;
+Vue.use(Fragment.Plugin);
 Vue.prototype.$common = Common;
 
 /* eslint-disable no-new */

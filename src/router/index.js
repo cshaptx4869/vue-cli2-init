@@ -1,46 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import {routes} from "./routes";
 import CommonMethod from '../assets/js/common'
 
 Vue.use(VueRouter);
-
-const Login = () => import('../components/Login');
-const Home = () => import('../components/Home');
-const Welcome = () => import('../components/Welcome');
-
-const routes = [
-  {
-    path: '*',
-    redirect: '/home'
-  },
-  {
-    path: '/home',
-    component: Home,
-    meta: {
-      title: '首页'
-    },
-    children: [
-      {
-        path: '',
-        redirect: '/welcome'
-      },
-      {
-        path: '/welcome',
-        component: Welcome,
-        meta: {
-          title: '欢迎'
-        }
-      }
-    ]
-  },
-  {
-    path: '/login',
-    component: Login,
-    meta: {
-      title: '登录'
-    }
-  }
-];
 
 const router = new VueRouter({
   routes: routes,
