@@ -10,7 +10,6 @@ export const routes = [
     redirect: '/home'
   },
   {
-    name: 'home',
     path: '/home',
     component: Layout,
     meta: {

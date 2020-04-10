@@ -12,7 +12,7 @@
 
       <el-container>
         <!--  左侧区  -->
-        <el-aside :width="this.isCollapse ? '64px' : '240px'">
+        <el-aside :width="this.isCollapse ? '64px' : '200px'">
           <div class="toggleButton" @click="toggleCollapse">|||</div>
           <!--  菜单  -->
           <el-menu
