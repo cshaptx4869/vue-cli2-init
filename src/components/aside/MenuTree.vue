@@ -21,18 +21,18 @@
 </template>
 
 <script>
-    export default {
-        name: "MenuTree",
-        props: {
-            menuData: {
-                type: Array,
-                default() {
-                    return []
-                },
-                required: true
-            }
-        }
+  export default {
+    name: "MenuTree",
+    props: {
+      menuData: {
+        type: Array,
+        default() {
+          return []
+        },
+        required: true
+      }
     }
+  }
 </script>
 
 <style scoped>

@@ -7,7 +7,7 @@
       </div>
       <!--   表单   -->
       <div class="formBox">
-        <el-form ref="loginformRef" :model="formData" :rules="formRule">
+        <el-form ref="loginFormRef" :model="formData" :rules="formRule">
           <el-form-item prop="username">
             <el-input
               v-model="formData.username"
@@ -35,56 +35,56 @@
 </template>
 
 <script>
-    import {request} from "../http/request";
+  import {request} from "../http/request";
 
-    export default {
-        name: "Login",
-        data() {
-            return {
-                formData: {
-                    username: '',
-                    password: '',
-                    type: 2
-                },
-                formRule: {
-                    username: [
-                        {required: true, message: '请输入用户名', trigger: 'blur'},
-                        {min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur'}
-                    ],
-                    password: [
-                        {required: true, message: '请输入密码', trigger: 'blur'}
-                    ]
-                }
-            }
+  export default {
+    name: "Login",
+    data() {
+      return {
+        formData: {
+          username: '',
+          password: '',
+          type: 2
         },
-        methods: {
-            submit: function () {
-                this.$refs.loginformRef.validate(valid => {
-                    if (valid) {
-                        request({
-                            url: '/admin/login/signIn',
-                            method: 'post',
-                            data: this.formData
-                        }).then(res => {
-                            if (res.code === 200) {
-                                this.$message.success('登录成功');
-                                this.$common.setToken('accessToken', res.data.access_token);
-                                this.$common.setToken('refreshToken', res.data.refresh_token);
-                                this.$router.push('/home');
-                            } else {
-                                this.$message.error('登录失败');
-                            }
-                        }).catch(err => {
-                            console.log(err);
-                        });
-                    }
-                });
-            },
-            reset: function () {
-                this.$refs.loginformRef.resetFields();
-            }
+        formRule: {
+          username: [
+            {required: true, message: '请输入用户名', trigger: 'blur'},
+            {min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur'}
+          ],
+          password: [
+            {required: true, message: '请输入密码', trigger: 'blur'}
+          ]
         }
+      }
+    },
+    methods: {
+      submit: function () {
+        this.$refs.loginFormRef.validate(valid => {
+          if (valid) {
+            request({
+              url: '/admin/login/signIn',
+              method: 'post',
+              data: this.formData
+            }).then(res => {
+              if (res.code === 200) {
+                this.$message.success('登录成功');
+                this.$common.setToken('accessToken', res.data.access_token);
+                this.$common.setToken('refreshToken', res.data.refresh_token);
+                this.$router.push('/home');
+              } else {
+                this.$message.error('登录失败');
+              }
+            }).catch(err => {
+              console.log(err);
+            });
+          }
+        });
+      },
+      reset: function () {
+        this.$refs.loginFormRef.resetFields();
+      }
     }
+  }
 </script>
 
 <style scoped>

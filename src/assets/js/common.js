@@ -1,6 +1,4 @@
-/*
-公共函数
-*/
+/* 公共函数 */
 
 import {request} from "../../http/request";
 

@@ -37,46 +37,46 @@
 </template>
 
 <script>
-    import {request} from "../http/request"
-    import MenuTree from './aside/MenuTree'
+  import {request} from "../http/request"
+  import MenuTree from './aside/MenuTree'
 
-    export default {
-        name: "Layout",
-        data() {
-            return {
-                menuData: [],
-                elementData: {},
-                isCollapse: false,
-                collapseClass: {}
-            }
-        },
-        methods: {
-            logout: function () {
-                this.$common.clearToken();
-                this.$router.push('/login');
-            },
-            getPermission: function () {
-                request({
-                    url: '/admin/user/permission',
-                    method: 'post'
-                }).then(res => {
-                    if (res.code === 200) {
-                        this.menuData = res.data.menu;
-                        this.elementData = res.data.element;
-                    }
-                })
-            },
-            toggleCollapse: function () {
-                this.isCollapse = !this.isCollapse;
-            }
-        },
-        created() {
-            this.getPermission();
-        },
-        components: {
-            MenuTree
-        }
+  export default {
+    name: "Layout",
+    data() {
+      return {
+        menuData: [],
+        elementData: {},
+        isCollapse: false,
+        collapseClass: {}
+      }
+    },
+    methods: {
+      logout: function () {
+        this.$common.clearToken();
+        this.$router.push('/login');
+      },
+      getPermission: function () {
+        request({
+          url: '/admin/user/permission',
+          method: 'post'
+        }).then(res => {
+          if (res.code === 200) {
+            this.menuData = res.data.menu;
+            this.elementData = res.data.element;
+          }
+        })
+      },
+      toggleCollapse: function () {
+        this.isCollapse = !this.isCollapse;
+      }
+    },
+    created() {
+      this.getPermission();
+    },
+    components: {
+      MenuTree
     }
+  }
 </script>
 
 <style scoped>

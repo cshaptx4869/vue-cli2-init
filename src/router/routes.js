@@ -3,6 +3,7 @@ const Login = () => import('../components/Login');
 const Layout = () => import('../components/Layout');
 const Welcome = () => import('../components/Welcome');
 const UserIndex = () => import('../components/user/UserIndex');
+const UserEdit = () => import('../components/user/UserEdit');
 
 export const routes = [
   {
@@ -34,6 +35,14 @@ export const routes = [
         component: UserIndex,
         meta: {
           title: '用户列表'
+        }
+      },
+      {
+        name: 'user/edit',
+        path: '/user/edit/:id',
+        component: UserEdit,
+        meta: {
+          title: '编辑用户'
         }
       }
     ]
