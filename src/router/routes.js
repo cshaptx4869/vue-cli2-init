@@ -4,6 +4,8 @@ const Layout = () => import('../components/Layout');
 const Welcome = () => import('../components/Welcome');
 const UserIndex = () => import('../components/user/UserIndex');
 const UserEdit = () => import('../components/user/UserEdit');
+const RoleIndex = () => import('../components/role/RoleIndex');
+const RoleEdit = () => import('../components/role/RoleEdit');
 
 export const routes = [
   {
@@ -43,6 +45,22 @@ export const routes = [
         component: UserEdit,
         meta: {
           title: '编辑用户'
+        }
+      },
+      {
+        name: 'role/index',
+        path: '/role/index',
+        component: RoleIndex,
+        meta: {
+          title: '角色列表'
+        }
+      },
+      {
+        name: 'role/edit',
+        path: '/role/edit/:id',
+        component: RoleEdit,
+        meta: {
+          title: '编辑角色'
         }
       }
     ]
