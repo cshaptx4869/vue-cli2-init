@@ -18,6 +18,7 @@
 
           <el-form-item prop="password">
             <el-input
+              type="password"
               v-model="formData.password"
               placeholder="密码"
               prefix-icon="el-icon-key"

@@ -15,7 +15,7 @@
         <el-table-column type="index" label="#"></el-table-column>
         <el-table-column prop="role_name" label="角色名" width="120"></el-table-column>
         <el-table-column prop="role_desc" label="描述"></el-table-column>
-        <el-table-column prop="created_at" label="创建时间"></el-table-column>
+        <el-table-column prop="created_at" label="创建时间" sortable></el-table-column>
         <el-table-column label="状态" width="80px">
           <!-- 作用域插槽 -->
           <template slot-scope="scope">

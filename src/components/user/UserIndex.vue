@@ -32,7 +32,7 @@
         <el-table-column prop="role_name" label="角色" :formatter="joinRoleName"></el-table-column>
         <el-table-column prop="user_email" label="邮箱"></el-table-column>
         <el-table-column prop="user_mobile" label="电话" width="100"></el-table-column>
-        <el-table-column prop="created_at" label="创建时间"></el-table-column>
+        <el-table-column prop="created_at" label="创建时间" sortable></el-table-column>
         <el-table-column label="状态" width="80px">
           <!-- 作用域插槽 -->
           <template slot-scope="scope">

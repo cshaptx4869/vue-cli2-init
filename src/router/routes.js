@@ -6,6 +6,9 @@ const UserIndex = () => import('../components/user/UserIndex');
 const UserEdit = () => import('../components/user/UserEdit');
 const RoleIndex = () => import('../components/role/RoleIndex');
 const RoleEdit = () => import('../components/role/RoleEdit');
+const MenuIndex = () => import('../components/menu/MenuIndex');
+const ElementIndex = () => import('../components/element/ElementIndex');
+const ApiIndex = () => import('../components/api/ApiIndex');
 
 export const routes = [
   {
@@ -61,6 +64,30 @@ export const routes = [
         component: RoleEdit,
         meta: {
           title: '编辑角色'
+        }
+      },
+      {
+        name: 'menu/index',
+        path: '/menu/index',
+        component: MenuIndex,
+        meta: {
+          title: '菜单列表'
+        }
+      },
+      {
+        name: 'element/index',
+        path: '/element/index',
+        component: ElementIndex,
+        meta: {
+          title: '元素列表'
+        }
+      },
+      {
+        name: 'api/index',
+        path: '/api/index',
+        component: ApiIndex,
+        meta: {
+          title: '接口列表'
         }
       }
     ]
