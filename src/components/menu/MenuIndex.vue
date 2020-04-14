@@ -48,6 +48,15 @@
           label="链接">
         </el-table-column>
         <el-table-column
+          prop="menu_href"
+          label="级别">
+          <template slot-scope="scope">
+            <el-button size="mini" plain :type="menuLevelColor(scope.row.menu_level)">
+              {{scope.row.menu_level}}级菜单
+            </el-button>
+          </template>
+        </el-table-column>
+        <el-table-column
           prop="created_at"
           sortable
           label="创建时间">
@@ -327,6 +336,10 @@
         }).catch(() => {
           this.$message.info('已取消删除');
         });
+      },
+      menuLevelColor(level) {
+        let colors = ['info', 'primary', 'success', 'warning', 'danger'];
+        return colors[level % 5];
       }
     },
     created() {
