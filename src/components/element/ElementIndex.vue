@@ -223,12 +223,12 @@
       // 监听 pageSize 改变事件
       handleSizeChange(newSize) {
         this.queryInfo.limit = newSize;
-        this.getUserList();
+        this.getElementList();
       },
       // 监听 page 改变事件
       handleCurrentChange(newPage) {
         this.queryInfo.page = newPage;
-        this.getUserList();
+        this.getElementList();
       },
       storeElementDialogColse() {
         this.$refs.storeElementFormRef.resetFields();
