@@ -10,6 +10,8 @@ const RoleAuthorize = () => import('../components/role/RoleAuthorize');
 const MenuIndex = () => import('../components/menu/MenuIndex');
 const ElementIndex = () => import('../components/element/ElementIndex');
 const ApiIndex = () => import('../components/api/ApiIndex');
+const Error404 = () => import('@/components/error-page/404');
+const Error401 = () => import('@/components/error-page/401');
 
 export const routes = [
   {
@@ -107,6 +109,22 @@ export const routes = [
     component: Login,
     meta: {
       title: '登录'
+    }
+  },
+  {
+    name: 'error/404',
+    path: '/error/404',
+    component: Error404,
+    meta: {
+      title: '404'
+    }
+  },
+  {
+    name: 'error/401',
+    path: '/error/401',
+    component: Error401,
+    meta: {
+      title: '401'
     }
   }
 ];
