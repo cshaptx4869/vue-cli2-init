@@ -39,6 +39,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="element_desc" label="描述"></el-table-column>
+        <el-table-column prop="api_name" label="绑定接口" :formatter="joinApiName"></el-table-column>
         <el-table-column prop="created_at" label="创建时间" sortable></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
@@ -258,6 +259,14 @@
       handleCurrentChange(newPage) {
         this.queryInfo.page = newPage;
         this.getElementList();
+      },
+      // 处理多接口绑定数据
+      joinApiName(row, col) {
+        let apiName = [];
+        for (let i = 0; i < row.api_name.length; i++) {
+          apiName.push(row.api_name);
+        }
+        return apiName.join(' ');
       },
       storeElementDialogColse() {
         this.$refs.storeElementFormRef.resetFields();
