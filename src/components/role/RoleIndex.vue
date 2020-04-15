@@ -26,14 +26,17 @@
           <template slot-scope="scope">
             <!-- 分配角色按钮 -->
             <el-tooltip effect="dark" content="分配权限" placement="top" :enterable="false">
-              <el-button type="warning" icon="el-icon-setting" size="mini" @click="set(scope.row.role_id)"></el-button>
+              <router-link :to="'/role/authorize/'+scope.row.role_id">
+                <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
+              </router-link>
             </el-tooltip>
             <!--  编辑  -->
             <router-link :to="'/role/edit/'+scope.row.role_id">
               <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
             </router-link>
             <!--  删除  -->
-            <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteRole(scope.row.role_id)"></el-button>
+            <el-button type="danger" icon="el-icon-delete" size="mini"
+                       @click="deleteRole(scope.row.role_id)"></el-button>
           </template>
         </el-table-column>
       </el-table>

@@ -41,10 +41,6 @@
         </el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
-            <!-- 分配角色按钮 -->
-            <el-tooltip effect="dark" content="分配角色" placement="top" :enterable="false">
-              <el-button type="warning" icon="el-icon-setting" size="mini" @click="set(scope.row.user_id)"></el-button>
-            </el-tooltip>
             <!--  编辑  -->
             <router-link :to="'/user/edit/'+scope.row.user_id">
               <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>

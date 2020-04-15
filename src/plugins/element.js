@@ -31,6 +31,9 @@ import {
   RadioGroup,
   Select,
   Option,
+  Tree,
+  Tabs,
+  TabPane,
   Message,
   MessageBox
 } from 'element-ui'
@@ -65,5 +68,8 @@ Vue.use(Radio);
 Vue.use(RadioGroup);
 Vue.use(Select);
 Vue.use(Option);
+Vue.use(Tree);
+Vue.use(Tabs);
+Vue.use(TabPane);
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
