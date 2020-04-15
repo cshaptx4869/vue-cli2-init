@@ -29,6 +29,8 @@ import {
   CheckboxGroup,
   Radio,
   RadioGroup,
+  Select,
+  Option,
   Message,
   MessageBox
 } from 'element-ui'
@@ -61,5 +63,7 @@ Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
 Vue.use(Radio);
 Vue.use(RadioGroup);
+Vue.use(Select);
+Vue.use(Option);
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;

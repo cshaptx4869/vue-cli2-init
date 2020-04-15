@@ -82,7 +82,7 @@
         </el-form-item>
         <el-form-item label="类型" prop="element_type">
           <el-radio-group v-model="storeElementFormData.element_type">
-            <el-radio :label="item.value" v-for="item in previewData" :key="item.value">
+            <el-radio :label="item.value" v-for="item in previewData.element_type" :key="item.value">
               {{item.text}}
             </el-radio>
           </el-radio-group>
@@ -96,7 +96,20 @@
         <el-form-item label="描述" prop="element_desc">
           <el-input v-model="storeElementFormData.element_desc" type="textarea" :row="2"></el-input>
         </el-form-item>
-        <slot name="button"></slot>
+        <el-form-item label="绑定接口">
+          <el-select v-model="storeElementFormData.api_ids" placeholder="请选择" filterable multiple>
+            <el-option
+              v-for="item in previewData.api"
+              :key="item.api_id"
+              :label="item.api_name"
+              :value="item.api_id">
+              <el-tooltip effect="dark" placement="right" :enterable="false">
+                <div slot="content">{{item.api_route}}<br/>{{item.api_method}} 请求</div>
+                <span>{{ item.api_name }}</span>
+              </el-tooltip>
+            </el-option>
+          </el-select>
+        </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="storeElementDialogVisible=false">取 消</el-button>
@@ -122,7 +135,7 @@
         </el-form-item>
         <el-form-item label="类型" prop="element_type">
           <el-radio-group v-model="updateElementFormData.element_type">
-            <el-radio :label="item.value" v-for="item in previewData" :key="item.value">
+            <el-radio :label="item.value" v-for="item in previewData.element_type" :key="item.value">
               {{item.text}}
             </el-radio>
           </el-radio-group>
@@ -135,6 +148,20 @@
         </el-form-item>
         <el-form-item label="描述" prop="element_desc">
           <el-input v-model="updateElementFormData.element_desc" type="textarea" :row="2"></el-input>
+        </el-form-item>
+        <el-form-item label="绑定接口">
+          <el-select v-model="updateElementFormData.api_ids" placeholder="请选择" filterable multiple>
+            <el-option
+              v-for="item in previewData.api"
+              :key="item.api_id"
+              :label="item.api_name"
+              :value="item.api_id">
+              <el-tooltip effect="dark" placement="right" :enterable="false">
+                <div slot="content">{{item.api_route}}<br/>{{item.api_method}} 请求</div>
+                <span>{{ item.api_name }}</span>
+              </el-tooltip>
+            </el-option>
+          </el-select>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -167,7 +194,8 @@
           element_type: 'page',
           element_code: '',
           element_desc: '',
-          element_sort_order: 100
+          element_sort_order: 100,
+          api_ids: []
         },
         updateElementFormData: {
           element_id: '',
@@ -175,7 +203,8 @@
           element_type: 'page',
           element_code: '',
           element_desc: '',
-          element_sort_order: 100
+          element_sort_order: 100,
+          api_ids: []
         },
         storeElementFormRules: {
           element_name: [
@@ -253,6 +282,7 @@
       submitStoreElementForm() {
         this.$refs.storeElementFormRef.validate((valid) => {
           if (valid) {
+            this.storeElementFormData.api_ids = JSON.stringify(this.storeElementFormData.api_ids);
             request({
               url: '/admin/element/store',
               method: 'post',
@@ -271,6 +301,7 @@
       submitUpdateElementForm() {
         this.$refs.updateElementFormRef.validate(valid => {
           if (valid) {
+            this.updateElementFormData.api_ids = JSON.stringify(this.updateElementFormData.api_ids);
             request({
               url: '/admin/element/update',
               method: 'post',
