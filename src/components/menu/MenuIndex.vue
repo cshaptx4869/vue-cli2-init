@@ -21,6 +21,9 @@
             <el-button slot="append" icon="el-icon-search" @click="getMenuList"></el-button>
           </el-input>
         </el-col>
+        <el-col :span="4">
+          <el-button type="primary" @click="storeMenuDialogVisible=true">添加菜单</el-button>
+        </el-col>
       </el-row>
 
       <!--  菜单列表  -->
@@ -180,7 +183,7 @@
           menu_name: ''
         },
         storeMenuFormData: {
-          menu_parent_id: '',
+          menu_parent_id: 0,
           menu_name: '',
           menu_icon: '',
           menu_href: '',
