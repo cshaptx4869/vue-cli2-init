@@ -7,6 +7,7 @@ import Fragment from 'vue-fragment'
 import './plugins/element'
 import './assets/css/global.css'
 import Common from './assets/js/common'
+import './directive/permission'
 import App from './App'
 
 Vue.config.productionTip = false;

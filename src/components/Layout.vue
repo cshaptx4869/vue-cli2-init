@@ -39,13 +39,13 @@
 <script>
   import {request} from "../http/request"
   import MenuTree from './aside/MenuTree'
+  import {setAuthorizedBlock, setAuthorizedPage} from '@/store/mutations-types'
 
   export default {
     name: "Layout",
     data() {
       return {
         menuData: [],
-        elementData: {},
         isCollapse: false,
         collapseClass: {}
       }
@@ -62,7 +62,8 @@
         }).then(res => {
           if (res.code === 200) {
             this.menuData = res.data.menu;
-            this.elementData = res.data.element;
+            this.$store.commit({type: setAuthorizedBlock, authorizedBlock: res.data.element.block});
+            this.$store.commit({type: setAuthorizedPage, authorizedPage: res.data.element.page});
           }
         })
       },

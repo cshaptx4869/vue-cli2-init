@@ -21,7 +21,7 @@
           </el-input>
         </el-col>
         <el-col :span="4">
-          <el-button type="primary" @click="storeUserDialogVisible=true">添加用户</el-button>
+          <el-button type="primary" @click="storeUserDialogVisible=true" v-permission="['storeUser']">添加用户</el-button>
         </el-col>
       </el-row>
 

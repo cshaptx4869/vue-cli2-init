@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
 import {routes} from "./routes";
 import CommonMethod from '../assets/js/common'
 
@@ -10,6 +11,9 @@ const router = new VueRouter({
   mode: 'history'
 });
 
+let useAuth = true;
+let authWhiteList = ['login', 'welcome', 'error/401', 'error/404'];
+let authorizedPage = store.getters.getAuthorizedPage;
 // 全局守卫
 router.beforeEach(async (to, from, next) => {
   let isLogin = await CommonMethod.checkToken();
@@ -18,6 +22,8 @@ router.beforeEach(async (to, from, next) => {
     return next('/login');
   } else if (to.path === '/login' && isLogin) {
     return next('/home');
+  } else if (useAuth && !authWhiteList.includes(to.name) && !authorizedPage.includes(to.name)) {
+    return next('/error/401');
   }
   // document.title = to.matched[0].meta.title;
   document.title = to.meta.title;
