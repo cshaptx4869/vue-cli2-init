@@ -62,8 +62,8 @@
         }).then(res => {
           if (res.code === 200) {
             this.menuData = res.data.menu;
-            this.$store.commit({type: setAuthorizedBlock, authorizedBlock: res.data.element.block});
-            this.$store.commit({type: setAuthorizedPage, authorizedPage: res.data.element.page});
+            this.$common.setAuthorizedBlock(res.data.element.block);
+            this.$common.setAuthorizedPage(res.data.element.page);
           }
         })
       },

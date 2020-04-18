@@ -36,17 +36,19 @@
         <el-table-column label="状态" width="80px">
           <!-- 作用域插槽 -->
           <template slot-scope="scope">
-            <el-switch v-model="scope.row.user_status" @change="userStatusChange(scope.row)"></el-switch>
+            <el-switch v-model="scope.row.user_status" @change="userStatusChange(scope.row)"
+                       v-permission="['userStatus']"></el-switch>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <!--  编辑  -->
             <router-link :to="'/user/edit/'+scope.row.user_id">
-              <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+              <el-button type="primary" icon="el-icon-edit" size="mini" v-permission="['editUser']"></el-button>
             </router-link>
             <!--  删除  -->
-            <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteUser(scope.row.user_id)"></el-button>
+            <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteUser(scope.row.user_id)"
+                       v-permission="['destoryUser']"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -231,11 +233,7 @@
       },
       // 处理多角色数据
       joinRoleName(row, col) {
-        let roleName = [];
-        for (let i = 0; i < row.role_name.length; i++) {
-          roleName.push(row.role_name);
-        }
-        return roleName.join(' ');
+        return row.role_name.join(' ');
       },
       storeUserDialogColse() {
         this.$refs.userFormRef.resetFields();

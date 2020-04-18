@@ -22,7 +22,7 @@
           </el-input>
         </el-col>
         <el-col :span="4">
-          <el-button type="primary" @click="storeApiDialogVisible=true">添加接口</el-button>
+          <el-button type="primary" @click="storeApiDialogVisible=true" v-permission="['storeApi']">添加接口</el-button>
         </el-col>
       </el-row>
 
@@ -43,10 +43,10 @@
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <!--  编辑  -->
-            <el-button type="primary" icon="el-icon-edit" size="mini"
+            <el-button type="primary" icon="el-icon-edit" size="mini" v-permission="['editApi']"
                        @click="updateApiDialogShow(scope.row.api_id)"></el-button>
             <!--  删除  -->
-            <el-button type="danger" icon="el-icon-delete" size="mini"
+            <el-button type="danger" icon="el-icon-delete" size="mini" v-permission="['destroyApi']"
                        @click="deleteApi(scope.row.api_id)"></el-button>
           </template>
         </el-table-column>
@@ -217,6 +217,7 @@
         }).then(res => {
           if (res.code === 200) {
             this.apiListData = res.data.items;
+            this.total = res.data.total;
           }
         })
       },

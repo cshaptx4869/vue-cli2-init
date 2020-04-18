@@ -22,7 +22,7 @@
           </el-input>
         </el-col>
         <el-col :span="4">
-          <el-button type="primary" @click="storeMenuDialogVisible=true">添加菜单</el-button>
+          <el-button type="primary" @click="storeMenuDialogVisible=true" v-permission="['storeMenu']">添加菜单</el-button>
         </el-col>
       </el-row>
 
@@ -69,19 +69,20 @@
           label="状态"
           width="100">
           <template slot-scope="scope">
-            <el-switch v-model="scope.row.menu_status" @change="menuStatusChange(scope.row)"></el-switch>
+            <el-switch v-model="scope.row.menu_status" @change="menuStatusChange(scope.row)"
+                       v-permission="['menuStatus']"></el-switch>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <!-- 添加 -->
-            <el-button type="success" icon="el-icon-plus" size="mini"
+            <el-button type="success" icon="el-icon-plus" size="mini" v-permission="['storeMenu']"
                        @click="storeMenuDialogShow(scope.row.menu_id)"></el-button>
             <!--  编辑  -->
-            <el-button type="primary" icon="el-icon-edit" size="mini"
+            <el-button type="primary" icon="el-icon-edit" size="mini" v-permission="['editMenu']"
                        @click="updateMenuDialogShow(scope.row.menu_id)"></el-button>
             <!--  删除  -->
-            <el-button type="danger" icon="el-icon-delete" size="mini"
+            <el-button type="danger" icon="el-icon-delete" size="mini" v-permission="['destroyMenu']"
                        @click="deleteMenu(scope.row.menu_id)"></el-button>
           </template>
         </el-table-column>

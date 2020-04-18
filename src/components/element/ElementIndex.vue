@@ -22,7 +22,7 @@
           </el-input>
         </el-col>
         <el-col :span="4">
-          <el-button type="primary" @click="storeElementDialogVisible=true">添加元素</el-button>
+          <el-button type="primary" @click="storeElementDialogVisible=true" v-permission="['storeElement']">添加元素</el-button>
         </el-col>
       </el-row>
 
@@ -44,10 +44,10 @@
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <!--  编辑  -->
-            <el-button type="primary" icon="el-icon-edit" size="mini"
+            <el-button type="primary" icon="el-icon-edit" size="mini" v-permission="['editElement']"
                        @click="updateElementDialogShow(scope.row.element_id)"></el-button>
             <!--  删除  -->
-            <el-button type="danger" icon="el-icon-delete" size="mini"
+            <el-button type="danger" icon="el-icon-delete" size="mini" v-permission="['destroyElement']"
                        @click="deleteElement(scope.row.element_id)"></el-button>
           </template>
         </el-table-column>
@@ -246,7 +246,8 @@
           data: this.queryInfo
         }).then(res => {
           if (res.code === 200) {
-            this.elementListData = res.data;
+            this.elementListData = res.data.items;
+            this.total = res.data.total;
           }
         })
       },
@@ -262,14 +263,11 @@
       },
       // 处理多接口绑定数据
       joinApiName(row, col) {
-        let apiName = [];
-        for (let i = 0; i < row.api_name.length; i++) {
-          apiName.push(row.api_name);
-        }
-        return apiName.join(' ');
+        return row.api_name.join(' ');
       },
       storeElementDialogColse() {
         this.$refs.storeElementFormRef.resetFields();
+        this.storeElementFormData.api_ids = [];
       },
       updateElementDialogColse() {
         this.$refs.updateElementFormRef.resetFields();

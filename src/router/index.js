@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '@/store'
 import {routes} from "./routes";
 import CommonMethod from '../assets/js/common'
 
@@ -13,7 +12,7 @@ const router = new VueRouter({
 
 let useAuth = true;
 let authWhiteList = ['login', 'welcome', 'error/401', 'error/404'];
-let authorizedPage = store.getters.getAuthorizedPage;
+let authorizedPage = CommonMethod.getAuthorizedPage();
 // 全局守卫
 router.beforeEach(async (to, from, next) => {
   let isLogin = await CommonMethod.checkToken();

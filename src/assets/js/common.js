@@ -14,6 +14,22 @@ function getToken(key = 'accessToken') {
   return window.sessionStorage.getItem(key);
 }
 
+function setAuthorizedBlock(value) {
+  window.sessionStorage.setItem('authorizedBlock', JSON.stringify(value));
+}
+
+function setAuthorizedPage(value) {
+  window.sessionStorage.setItem('authorizedPage', JSON.stringify(value));
+}
+
+function getAuthorizedBlock() {
+  return JSON.parse(sessionStorage.getItem('authorizedBlock'));
+}
+
+function getAuthorizedPage() {
+  return JSON.parse(sessionStorage.getItem('authorizedPage'));
+}
+
 /**
  * 验证 token 有效性
  * 1、accessToken 是否存在。不存在,跳转登录; 存在,验证有效性
@@ -55,5 +71,9 @@ export default {
   setToken,
   getToken,
   checkToken,
-  clearToken
+  clearToken,
+  setAuthorizedBlock,
+  setAuthorizedPage,
+  getAuthorizedBlock,
+  getAuthorizedPage
 }
