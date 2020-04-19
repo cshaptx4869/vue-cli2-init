@@ -71,7 +71,18 @@
                 this.$message.success('登录成功');
                 this.$common.setToken('accessToken', res.data.access_token);
                 this.$common.setToken('refreshToken', res.data.refresh_token);
-                this.$router.push('/home');
+                request({
+                  url: '/admin/user/permission',
+                  method: 'post'
+                }).then(res => {
+                  if (res.code !== 200) {
+                    return this.$message.error('获取权限失败');
+                  }
+                  this.$common.setAuthorizedMenu(res.data.menu);
+                  this.$common.setAuthorizedBlock(res.data.element.block);
+                  this.$common.setAuthorizedPage(res.data.element.page);
+                  this.$router.push('/home');
+                });
               } else {
                 this.$message.error('登录失败');
               }

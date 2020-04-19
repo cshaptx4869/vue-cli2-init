@@ -22,12 +22,23 @@ function setAuthorizedPage(value) {
   window.sessionStorage.setItem('authorizedPage', JSON.stringify(value));
 }
 
+function setAuthorizedMenu(value) {
+  window.sessionStorage.setItem('authorizedMenu', JSON.stringify(value));
+}
+
 function getAuthorizedBlock() {
-  return JSON.parse(sessionStorage.getItem('authorizedBlock'));
+  let authorizedBlock = window.sessionStorage.getItem('authorizedBlock');
+  return authorizedBlock ? JSON.parse(authorizedBlock) : [];
 }
 
 function getAuthorizedPage() {
-  return JSON.parse(sessionStorage.getItem('authorizedPage'));
+  let authorizedPage = window.sessionStorage.getItem('authorizedPage');
+  return authorizedPage ? JSON.parse(authorizedPage) : [];
+}
+
+function getAuthorizedMenu() {
+  let authorizedMenu = window.sessionStorage.getItem('authorizedMenu');
+  return authorizedMenu ? JSON.parse(authorizedMenu) : [];
 }
 
 /**
@@ -72,8 +83,10 @@ export default {
   getToken,
   checkToken,
   clearToken,
+  setAuthorizedMenu,
   setAuthorizedBlock,
   setAuthorizedPage,
+  getAuthorizedMenu,
   getAuthorizedBlock,
-  getAuthorizedPage
+  getAuthorizedPage,
 }

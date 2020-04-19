@@ -24,7 +24,7 @@
             :collapse-transition="false"
             :router="true"
             :default-active="$route.path">
-            <MenuTree :menuData="this.menuData"></MenuTree>
+            <MenuTree :menuData="$common.getAuthorizedMenu()"></MenuTree>
           </el-menu>
         </el-aside>
         <!--  主体区  -->
@@ -37,17 +37,13 @@
 </template>
 
 <script>
-  import {request} from "../http/request"
   import MenuTree from './aside/MenuTree'
-  import {setAuthorizedBlock, setAuthorizedPage} from '@/store/mutations-types'
 
   export default {
     name: "Layout",
     data() {
       return {
-        menuData: [],
         isCollapse: false,
-        collapseClass: {}
       }
     },
     methods: {
@@ -55,24 +51,9 @@
         this.$common.clearToken();
         this.$router.push('/login');
       },
-      getPermission: function () {
-        request({
-          url: '/admin/user/permission',
-          method: 'post'
-        }).then(res => {
-          if (res.code === 200) {
-            this.menuData = res.data.menu;
-            this.$common.setAuthorizedBlock(res.data.element.block);
-            this.$common.setAuthorizedPage(res.data.element.page);
-          }
-        })
-      },
       toggleCollapse: function () {
         this.isCollapse = !this.isCollapse;
       }
-    },
-    created() {
-      this.getPermission();
     },
     components: {
       MenuTree
