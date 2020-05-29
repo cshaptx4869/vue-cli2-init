@@ -12,11 +12,10 @@ const router = new VueRouter({
 
 let useAuth = true;
 let authWhiteList = ['login', 'welcome', 'error/401', 'error/404'];
-let authorizedPage = CommonMethod.getAuthorizedPage();
 // 全局守卫
 router.beforeEach(async (to, from, next) => {
   let isLogin = await CommonMethod.checkToken();
-  console.log(isLogin);
+  let authorizedPage = CommonMethod.getAuthorizedPage();
   if (to.path !== '/login' && !isLogin) {
     return next('/login');
   } else if (to.path === '/login' && isLogin) {

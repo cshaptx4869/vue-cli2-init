@@ -1,5 +1,5 @@
-const devServerUrl = 'http://rbac.nannanqiaonan.cn/api';
-const prodServerUrl = 'http://rbac.nannanqiaonan.cn/api';
+const devServerUrl = 'https://rbac.nannanqiaonan.cn/api';
+const prodServerUrl = 'https://rbac.nannanqiaonan.cn/api';
 
 let serverUrl = '';
 switch (process.env.NODE_ENV) {
